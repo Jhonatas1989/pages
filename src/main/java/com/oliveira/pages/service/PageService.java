@@ -5,9 +5,9 @@ import com.oliveira.pages.model.Page;
 import java.util.List;
 
 public interface PageService {
-    List<Page> save(List<Page> pages);
+    Page save(Page page);
 
-    List<Page> update(List<Page> pages);
+    Page update(Page page);
 
     List<Page> findAll();
 

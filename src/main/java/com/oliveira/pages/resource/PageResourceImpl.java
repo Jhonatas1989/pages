@@ -43,18 +43,18 @@ public class PageResourceImpl implements PageResource {
 
     @PostMapping("/pages")
     @Override
-    public List<Page> save(@RequestBody List<@Valid Page> pages) {
+    public Page save(@Valid @RequestBody Page page) {
         logger.info("Save page");
 
-        return service.save(pages);
+        return service.save(page);
     }
 
     @PutMapping("/pages")
     @Override
-    public List<Page> update(@RequestBody List<@Valid Page> pagers) {
+    public Page update(@Valid @RequestBody Page page) {
         logger.info("Update page");
 
-        return service.update(pagers);
+        return service.update(page);
     }
 
     @DeleteMapping("/pages/{id}")

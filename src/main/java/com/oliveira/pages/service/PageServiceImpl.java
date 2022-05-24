@@ -20,35 +20,30 @@ public class PageServiceImpl implements PageService {
     }
 
     @Override
-    public List<Page> save(List<Page> pages) {
-        pages.forEach(repository::save);
-
-        return findAll();
+    public Page save(Page page) {
+        return repository.save(page);
     }
 
     @Override
-    public List<Page> update(List<Page> pages) {
-        pages.forEach(item -> {
-            var page = repository.findById(item.getId());
+    public Page update(Page page) {
+        var pageOptional = repository.findById(page.getId());
 
-            if (page.isPresent()) {
-                repository.delete(page.get());
+        if (pageOptional.isEmpty())
+            throw new PageNotFoundException("page.not.found");
 
-                repository.save(item);
-            }
-        });
+        repository.delete(pageOptional.get());
 
-        return findAll();
+        return repository.save(page);
     }
 
     @Override
     public List<Page> findAll() {
-        List<Page> pages = repository.findAll();
+        List<Page> page = repository.findAll();
 
-         if (pages.isEmpty())
+         if (page.isEmpty())
             throw new PageNotFoundException("page.not.found");
 
-        return pages;
+        return page;
     }
 
     @Override

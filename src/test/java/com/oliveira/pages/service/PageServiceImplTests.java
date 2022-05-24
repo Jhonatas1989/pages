@@ -33,11 +33,11 @@ public class PageServiceImplTests {
 
     @Test
     public void givenRequest_WhenSavePage_ThenSucceed() {
-        Mockito.lenient().when(repository.findAll()).thenReturn(List.of(new Page()));
+        Mockito.lenient().when(repository.save(Mockito.any())).thenReturn(new Page());
 
-        List<Page> page = service.save(List.of(new Page()));
+        Page page = service.save(new Page());
 
-        Assertions.assertThat(page).isNotEmpty();
+        Assertions.assertThat(page).isNotNull();
     }
 
     @Test
@@ -68,11 +68,11 @@ public class PageServiceImplTests {
         Page page = new Page("1", null, null, null);
 
         Mockito.lenient().when(repository.findById(Mockito.any())).thenReturn(Optional.of(page));
-        Mockito.lenient().when(repository.findAll()).thenReturn(List.of(page));
+        Mockito.lenient().when(repository.save(Mockito.any())).thenReturn(page);
 
-        List<Page> pages = service.update(List.of(page));
+        Page result = service.update(page);
 
-        Assertions.assertThat(pages).isNotEmpty();
+        Assertions.assertThat(result).isNotNull();
     }
 
     @Test

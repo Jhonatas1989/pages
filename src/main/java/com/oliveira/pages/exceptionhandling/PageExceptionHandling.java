@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
@@ -30,6 +31,21 @@ public class PageExceptionHandling extends ResponseEntityExceptionHandler {
     @Autowired
     public PageExceptionHandling(MessageSource messageSource) {
         this.messageSource = messageSource;
+    }
+
+    @Override
+    public ResponseEntity<Object> handleMissingServletRequestParameter(MissingServletRequestParameterException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        List<String> details = new ArrayList<>();
+        details.add(ex.getLocalizedMessage());
+
+        ErrorResponse error = new ErrorResponse(
+                "Server Error",
+                "server.error"   ,
+                details);
+
+        logger.error("Server Error" + GsonUtil.build().toJson(error));
+
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(Exception.class)

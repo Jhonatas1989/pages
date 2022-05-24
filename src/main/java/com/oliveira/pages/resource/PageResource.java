@@ -43,7 +43,7 @@ public interface PageResource {
             @ApiResponse(code = 200, message = "Successfully saved page"),
             @ApiResponse(code = 401, message = "You are not authorized to saved the resource")
     })
-    List<Page> save(@RequestBody List<@Valid Page> pages);
+    Page save(@Valid @RequestBody Page pages);
 
     @ApiOperation(value = "Update a page", response = Page.class)
     @ApiResponses(value = {
@@ -53,7 +53,7 @@ public interface PageResource {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to update is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to save is not found")
     })
-    List<Page> update(@RequestBody List<@Valid Page> pagers);
+    Page update(@Valid @RequestBody Page pagers);
 
     @ApiOperation(value = "Delete a page")
     @ApiResponses(value = {
