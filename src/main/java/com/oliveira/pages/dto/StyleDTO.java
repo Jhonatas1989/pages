@@ -1,6 +1,6 @@
-package com.oliveira.pages.model;
+package com.oliveira.pages.dto;
 
-public class Style {
+public class StyleDTO {
 
     private String titleColor;
     private String titleFontSize;
@@ -11,7 +11,7 @@ public class Style {
     private String buttonColor;
     private String buttonBackgroundColor;
 
-    public Style(
+    public StyleDTO(
             String titleColor,
             String titleFontSize,
             String descriptionColor,
@@ -30,7 +30,7 @@ public class Style {
         this.buttonBackgroundColor = buttonBackgroundColor;
     }
 
-    public Style() {
+    public StyleDTO() {
     }
 
     public String getTitleColor() {

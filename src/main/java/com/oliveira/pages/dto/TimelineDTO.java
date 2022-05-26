@@ -1,16 +1,16 @@
-package com.oliveira.pages.model;
+package com.oliveira.pages.dto;
 
-public class Timeline {
+public class TimelineDTO {
 
     private String text;
     private int sequence;
 
-    public Timeline(String text, int sequence) {
+    public TimelineDTO(String text, int sequence) {
         this.text = text;
         this.sequence = sequence;
     }
 
-    public Timeline() {
+    public TimelineDTO() {
     }
 
     public String getText() {

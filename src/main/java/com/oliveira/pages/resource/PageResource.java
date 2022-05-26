@@ -1,6 +1,7 @@
 package com.oliveira.pages.resource;
 
 import com.oliveira.pages.config.SwaggerConfig;
+import com.oliveira.pages.dto.PageDTO;
 import com.oliveira.pages.model.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -26,9 +27,9 @@ public interface PageResource {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
     })
-    List<Page> findAll();
+    List<PageDTO> findAll();
 
-    @ApiOperation(value = "Search a page with an ID", response = Page.class)
+    @ApiOperation(value = "Search a page with an ID", response = PageDTO.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully retrieved page"),
             @ApiResponse(code = 204, message = "Page not found"),
@@ -36,16 +37,16 @@ public interface PageResource {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
     })
-    Page findById(@PathVariable("id") String id);
+    PageDTO findById(@PathVariable("id") String id);
 
-    @ApiOperation(value = "Add a page", response = Page.class)
+    @ApiOperation(value = "Add a page", response = PageDTO.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully saved page"),
             @ApiResponse(code = 401, message = "You are not authorized to saved the resource")
     })
-    Page save(@Valid @RequestBody Page pages);
+    PageDTO save(@Valid @RequestBody PageDTO page);
 
-    @ApiOperation(value = "Update a page", response = Page.class)
+    @ApiOperation(value = "Update a page", response = PageDTO.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully updated page"),
             @ApiResponse(code = 204, message = "Page not found"),
@@ -53,7 +54,7 @@ public interface PageResource {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to update is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to save is not found")
     })
-    Page update(@Valid @RequestBody Page pagers);
+    PageDTO update(@Valid @RequestBody PageDTO page);
 
     @ApiOperation(value = "Delete a page")
     @ApiResponses(value = {

@@ -1,16 +1,15 @@
-package com.oliveira.pages.model;
+package com.oliveira.pages.dto;
 
-public class ContentTop extends ContentBase {
+public class ContentTopDTO extends ContentBaseDTO {
 
     private String description;
 
-    public ContentTop(String title, String videoUrl, Style style, String description) {
+    public ContentTopDTO(String title, String videoUrl, StyleDTO style, String description) {
         super(title, videoUrl, style);
         this.description = description;
     }
 
-    public ContentTop() {
-
+    public ContentTopDTO() {
     }
 
     public String getDescription() {

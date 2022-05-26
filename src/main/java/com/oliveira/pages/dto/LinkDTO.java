@@ -1,20 +1,20 @@
-package com.oliveira.pages.model;
+package com.oliveira.pages.dto;
 
-public class Link {
+public class LinkDTO {
 
     private String textBefore;
     private String textAfter;
     private String link;
     private String linkText;
 
-    public Link(String textBefore, String textAfter, String link, String linkText) {
+    public LinkDTO(String textBefore, String textAfter, String link, String linkText) {
         this.textBefore = textBefore;
         this.textAfter = textAfter;
         this.link = link;
         this.linkText = linkText;
     }
 
-    public Link() {
+    public LinkDTO() {
     }
 
     public String getTextBefore() {

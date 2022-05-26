@@ -1,6 +1,6 @@
 package com.oliveira.pages.resource;
 
-import com.oliveira.pages.model.Page;
+import com.oliveira.pages.dto.PageDTO;
 import com.oliveira.pages.service.PageService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -27,7 +27,7 @@ public class PageResourceImpl implements PageResource {
 
     @GetMapping("/pages")
     @Override
-    public List<Page> findAll() {
+    public List<PageDTO> findAll() {
         logger.info("Find all pages");
 
         return service.findAll();
@@ -35,7 +35,7 @@ public class PageResourceImpl implements PageResource {
 
     @GetMapping("/pages/{id}")
     @Override
-    public Page findById(@PathVariable("id") String id) {
+    public PageDTO findById(@PathVariable("id") String id) {
         logger.info("Find page by id: " + id);
 
         return service.findById(id);
@@ -43,7 +43,7 @@ public class PageResourceImpl implements PageResource {
 
     @PostMapping("/pages")
     @Override
-    public Page save(@Valid @RequestBody Page page) {
+    public PageDTO save(@Valid @RequestBody PageDTO page) {
         logger.info("Save page");
 
         return service.save(page);
@@ -51,7 +51,7 @@ public class PageResourceImpl implements PageResource {
 
     @PutMapping("/pages")
     @Override
-    public Page update(@Valid @RequestBody Page page) {
+    public PageDTO update(@Valid @RequestBody PageDTO page) {
         logger.info("Update page");
 
         return service.update(page);

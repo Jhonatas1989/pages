@@ -1,18 +1,18 @@
-package com.oliveira.pages.model;
+package com.oliveira.pages.dto;
 
-public class ContentBase {
+public class ContentBaseDTO {
 
     private String title;
     private String videoUrl;
-    private Style style;
+    private StyleDTO style;
 
-    public ContentBase(String title, String videoUrl, Style style) {
+    public ContentBaseDTO(String title, String videoUrl, StyleDTO style) {
         this.title = title;
         this.videoUrl = videoUrl;
         this.style = style;
     }
 
-    public ContentBase() {
+    public ContentBaseDTO() {
     }
 
     public String getTitle() {
@@ -31,11 +31,11 @@ public class ContentBase {
         this.videoUrl = videoUrl;
     }
 
-    public Style getStyle() {
+    public StyleDTO getStyle() {
         return style;
     }
 
-    public void setStyle(Style style) {
+    public void setStyle(StyleDTO style) {
         this.style = style;
     }
 }

@@ -22,6 +22,9 @@ public class Content extends ContentBase {
         this.loginFooter = loginFooter;
     }
 
+    public Content() {
+    }
+
     public List<Timeline> getTimeline() {
         return timeline;
     }

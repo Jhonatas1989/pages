@@ -1,8 +1,10 @@
 package com.oliveira.pages.service;
 
+import com.oliveira.pages.dto.PageDTO;
 import com.oliveira.pages.exception.PageNotFoundException;
 import com.oliveira.pages.model.Page;
 import com.oliveira.pages.repository.PageRepository;
+import com.oliveira.pages.util.PageMapper;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,6 +12,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
@@ -22,20 +25,23 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class PageServiceImplTests {
 
     @Mock
-    PageRepository repository;
+    private PageRepository repository;
 
     private PageService service;
 
+    @Autowired
+    private PageMapper mapper;
+
     @BeforeEach
     void init() {
-        service = new PageServiceImpl(repository);
+        service = new PageServiceImpl(repository, mapper);
     }
 
     @Test
     public void givenRequest_WhenSavePage_ThenSucceed() {
         Mockito.lenient().when(repository.save(Mockito.any())).thenReturn(new Page());
 
-        Page page = service.save(new Page());
+        PageDTO page = service.save(new PageDTO());
 
         Assertions.assertThat(page).isNotNull();
     }
@@ -65,12 +71,19 @@ public class PageServiceImplTests {
 
     @Test
     public void givenRequest_WhenUpdatePage_ThenSucceed() {
-        Page page = new Page("1", null, null, null);
+        PageDTO pageDTO = new PageDTO("1", null, null, null);
+        Page page = mapper.convertFromPageDTOToPage(pageDTO);
 
-        Mockito.lenient().when(repository.findById(Mockito.any())).thenReturn(Optional.of(page));
-        Mockito.lenient().when(repository.save(Mockito.any())).thenReturn(page);
+        Mockito
+                .lenient()
+                .when(repository.findById(Mockito.any()))
+                .thenReturn(Optional.of(page));
 
-        Page result = service.update(page);
+        Mockito.lenient()
+                .when(repository.save(Mockito.any()))
+                .thenReturn(page);
+
+        PageDTO result = service.update(pageDTO);
 
         Assertions.assertThat(result).isNotNull();
     }

@@ -1,17 +1,18 @@
 package com.oliveira.pages.service;
 
+import com.oliveira.pages.dto.PageDTO;
 import com.oliveira.pages.model.Page;
 
 import java.util.List;
 
 public interface PageService {
-    Page save(Page page);
+    PageDTO save(PageDTO page);
 
-    Page update(Page page);
+    PageDTO update(PageDTO page);
 
-    List<Page> findAll();
+    List<PageDTO> findAll();
 
-    Page findById(String id);
+    PageDTO findById(String id);
 
     void delete(String id);
 }
