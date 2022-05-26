@@ -1,9 +1,16 @@
 package com.oliveira.pages.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+import javax.validation.constraints.NotNull;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ContentBaseDTO {
 
     private String title;
     private String videoUrl;
+
+    @NotNull(message = "Style cannot be null")
     private StyleDTO style;
 
     public ContentBaseDTO(String title, String videoUrl, StyleDTO style) {

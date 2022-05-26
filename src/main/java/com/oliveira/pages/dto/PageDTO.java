@@ -1,8 +1,11 @@
 package com.oliveira.pages.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class PageDTO {
 
     @NotNull(message = "Page Id cannot be null")
